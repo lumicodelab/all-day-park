@@ -895,10 +895,20 @@ INIT.draw = function(){
   function start(e){drawing=true;last=pos(e);showRing(last);e.preventDefault();}
   function move(e){const p=pos(e);showRing(p);if(!drawing)return;ctx.strokeStyle=erase?'#fff':color;ctx.lineWidth=curDiameter();ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;e.preventDefault();}
   function end(){drawing=false;}
-  canvas.addEventListener('mousedown',start);canvas.addEventListener('mousemove',move);window.addEventListener('mouseup',end);
-  canvas.addEventListener('mouseenter',()=>{ring.style.display='block';});
-  canvas.addEventListener('mouseleave',()=>{if(!drawing)ring.style.display='none';});
-  canvas.addEventListener('touchstart',start,{passive:false});canvas.addEventListener('touchmove',move,{passive:false});canvas.addEventListener('touchend',end);
+ canvas.addEventListener('mousedown',start);
+canvas.addEventListener('mousemove',move);
+window.addEventListener('mouseup',end);
+
+window.addEventListener('blur',end);
+document.addEventListener('mouseleave',end);
+
+canvas.addEventListener('mouseenter',()=>{ring.style.display='block';});
+canvas.addEventListener('mouseleave',()=>{end(); ring.style.display='none';});
+
+canvas.addEventListener('touchstart',start,{passive:false});
+canvas.addEventListener('touchmove',move,{passive:false});
+canvas.addEventListener('touchend',end);
+canvas.addEventListener('touchcancel',end);
   syncRing(); fit();
   REOPEN.draw=()=>{if(!canvas.width)fit();};
 };
