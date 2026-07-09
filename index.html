@@ -514,9 +514,14 @@ font-weight:700;
     <div class="card">
       <div class="toolbar" style="margin-bottom:16px;">
         <div class="swatches" id="dwSwatches"></div>
-        <div class="custom-sw" id="dwCustomWrap" title="모든 색 선택">
-  <input type="color" id="dwCustom" value="#8e44ad" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;">
-</div>
+        <input
+  type="text"
+  id="dwCustom"
+  value="#8e44ad"
+  maxlength="7"
+  title="색상 코드 입력"
+  style="width:86px;height:34px;border:1px solid #ddd;border-radius:10px;padding:0 10px;font-weight:700;color:#5A4635;background:#fff;"
+>
         <div class="fg" style="margin-left:auto;">
           <span class="lbl">펜 굵기 <b id="dwPenChip" style="color:var(--ink);">6</b></span>
           <input type="range" id="dwPenSize" min="0" max="100" value="6">
