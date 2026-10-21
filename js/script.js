@@ -57,7 +57,15 @@ function getScreenFromPath(){
 
   if(!id) return 'home';
 
-  return RIDES.some(ride => ride.id === id) ? id : 'home';
+  const validScreens = [
+    ...RIDES.map(ride => ride.id),
+    'about',
+    'privacy',
+    'terms',
+    'contact'
+  ];
+
+  return validScreens.includes(id) ? id : 'home';
 }
 
 window.addEventListener('popstate', ()=>{
